@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "netflix test",
+	"description":"I am speed",
+	"version":"1.0.0",
+	
+	"browser_action":{
+		"default_icon": "ant.png",
+		"default_popup": "index.html"
+
+	},
+	"permissions":["activeTab"],
+
+	"content_scripts": [ 
+        { 
+			"js": [ "jquery.min.js"],
+            
+            "matches": [ "http://*/*", "https://*/*"] 
+        }
+    ]
+
+}
