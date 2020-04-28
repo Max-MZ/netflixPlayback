@@ -21,20 +21,49 @@ function main() {
   document.addEventListener('DOMContentLoaded', function () {
       console.log("wtf");
     var link = document.getElementById('start');
+    var reset = document.getElementById('reset');
+    var speed = document.getElementById('currSpeed');
+
+    speedVal = speed.innerText;
+
     
-    link.addEventListener('click', function() {
+
+    reset.addEventListener('click', function() {
+        speedVal = 1;
+        speed.innerText = speedVal;
         // link.innerText = "asdfa";
         chrome.tabs.query({ active: true, currentWindow: true}, function(activeTabs) {
             // WAY 1
             chrome.tabs.executeScript(activeTabs[0].id, 
-                { code: `document.querySelector('video').playbackRate = 2` 
+                { code: `document.querySelector('video').playbackRate = 1` 
             });
         });
-        var video = document.querySelector('video');
-        link.innerText = video.videoWidth.toString();
-        video.playbackRate= 2;
-        console.log("buttont");
+        // var video = document.querySelector('video');
+        // link.innerText = video.videoWidth.toString();
+        // video.playbackRate= 2;
+        // console.log("buttont");
     });
-    document.querySelector('button').addEventListener('click', clickHandler);
+
+
+
+    
+    link.addEventListener('click', function() {
+        speedVal = speedVal+1;
+        speed.innerText = speedVal;
+        // link.innerText = "asdfa";
+        chrome.tabs.query({ active: true, currentWindow: true}, function(activeTabs) {
+            // WAY 1
+            chrome.tabs.executeScript(activeTabs[0].id, 
+                { code: `document.querySelector('video').playbackRate = ${speedVal}` 
+            });
+        });
+        // var video = document.querySelector('video');
+        // link.innerText = video.videoWidth.toString();
+        // video.playbackRate= 2;
+        // console.log("buttont");
+    });
+
+    
+    
     main();
   });
